@@ -151,7 +151,6 @@
             margin-bottom: 8px;
         }
 
-        /* Contador de visitas - discreto abaixo do nome */
         .visit-counter {
             font-size: 9px;
             color: rgba(255, 255, 255, 0.15);
@@ -202,7 +201,6 @@
         .flag-stripe.pink { background: #f5a9b8 !important; }
         .flag-stripe.white { background: #ffffff !important; }
 
-        /* Back side styles */
         .back-header-clickable {
             flex-shrink: 0;
             cursor: pointer;
@@ -247,13 +245,15 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            overflow-y: scroll;
+            overflow-y: auto;
             overflow-x: hidden;
             padding-right: 4px;
             -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
+            overscroll-behavior-y: contain;
+            overscroll-behavior-x: none;
             touch-action: pan-y;
             min-height: 0;
+            position: relative;
         }
 
         .about {
@@ -413,7 +413,6 @@
             transform: translateY(0);
         }
 
-        /* Scrollbar */
         .back-content {
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 20, 147, 0.5) rgba(0, 0, 0, 0.2);
@@ -465,7 +464,6 @@
                 <div class="front-overlay">
                     <h1 class="name-overlay">Alexia Melusine 🌹</h1>
                     <p class="title-overlay">Criadora de conteúdo</p>
-                    <!-- Contador discreto abaixo do nome -->
                     <div class="visit-counter">
                         👁️ <span id="contador">0</span> visitas
                     </div>
@@ -510,17 +508,14 @@
         </div>
     </div>
 
-    <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
-        // Configuração Supabase
         const SUPABASE_URL = "https://qvbjwzszdijhydgcqvyu.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2Ymp3enN6ZGlqaHlkZ2Nxdnl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzMjA3NDQsImV4cCI6MjA4MDg5Njc0NH0.w__h1N2owBQC5HDedmCjRX4IPcXODs_Kc5RyfYeHk_g";
 
         let client;
 
-        // Inicializa o Supabase
         function initSupabase() {
             try {
                 client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -531,7 +526,6 @@
             }
         }
 
-        // Registra visita e carrega contador
         async function handleVisitCounter() {
             if (!client) {
                 document.getElementById('contador').innerText = '--';
@@ -539,10 +533,8 @@
             }
 
             try {
-                // Registra a visita
                 await client.from("page_visits").insert([{ route: "business-card" }]);
 
-                // Carrega o total de visitas
                 const { count, error } = await client
                     .from("page_visits")
                     .select("*", { count: "exact", head: true })
@@ -559,7 +551,6 @@
             }
         }
 
-        // Funções do cartão
         function flipCard() {
             document.getElementById('flipCard').classList.toggle('flipped');
         }
@@ -573,25 +564,42 @@
             });
         }
 
-        // Impede que o scroll dentro do conteúdo dispare o flip
         document.addEventListener('DOMContentLoaded', function() {
             const backContent = document.getElementById('backContent');
+            const flipCard = document.getElementById('flipCard');
+            
             if (backContent) {
-                backContent.addEventListener('touchstart', function(e) {
-                    e.stopPropagation();
-                }, { passive: true });
-                
-                backContent.addEventListener('touchmove', function(e) {
-                    e.stopPropagation();
-                }, { passive: true });
-                
                 backContent.addEventListener('click', function(e) {
                     e.stopPropagation();
                 });
+
+                let startY = 0;
+                let isScrolling = false;
+
+                backContent.addEventListener('touchstart', function(e) {
+                    startY = e.touches[0].clientY;
+                    isScrolling = false;
+                }, { passive: true });
+
+                backContent.addEventListener('touchmove', function(e) {
+                    const currentY = e.touches[0].clientY;
+                    const deltaY = Math.abs(currentY - startY);
+                    
+                    if (deltaY > 10) {
+                        isScrolling = true;
+                        e.stopPropagation();
+                    }
+                }, { passive: true });
+
+                backContent.addEventListener('touchend', function(e) {
+                    if (!isScrolling) {
+                        e.stopPropagation();
+                    }
+                    isScrolling = false;
+                }, { passive: true });
             }
         });
 
-        // Partículas
         function createParticle() {
             const particle = document.createElement('div');
             particle.className = 'particle ' + (Math.random() > 0.5 ? 'rose' : 'star');
@@ -602,13 +610,10 @@
             setTimeout(() => particle.remove(), 12000);
         }
 
-        // Inicialização
         window.addEventListener('load', () => {
-            // Inicia partículas
             setInterval(createParticle, 800);
             for (let i = 0; i < 5; i++) setTimeout(createParticle, i * 150);
 
-            // Inicia contador
             if (initSupabase()) {
                 handleVisitCounter();
             }
