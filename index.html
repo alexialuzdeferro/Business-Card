@@ -119,6 +119,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            touch-action: none;
         }
 
         .photo-front {
@@ -251,9 +252,10 @@
             -webkit-overflow-scrolling: touch;
             overscroll-behavior-y: contain;
             overscroll-behavior-x: none;
-            touch-action: pan-y;
+            touch-action: pan-y !important;
             min-height: 0;
             position: relative;
+            pointer-events: auto;
         }
 
         .about {
@@ -566,36 +568,44 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             const backContent = document.getElementById('backContent');
-            const flipCard = document.getElementById('flipCard');
+            const flipCardEl = document.getElementById('flipCard');
             
             if (backContent) {
+                // Impede cliques de virar o cartão
                 backContent.addEventListener('click', function(e) {
                     e.stopPropagation();
                 });
 
+                // Variáveis de controle de toque
                 let startY = 0;
-                let isScrolling = false;
+                let startX = 0;
+                let currentScrollTop = 0;
 
                 backContent.addEventListener('touchstart', function(e) {
                     startY = e.touches[0].clientY;
-                    isScrolling = false;
+                    startX = e.touches[0].clientX;
+                    currentScrollTop = backContent.scrollTop;
                 }, { passive: true });
 
                 backContent.addEventListener('touchmove', function(e) {
-                    const currentY = e.touches[0].clientY;
-                    const deltaY = Math.abs(currentY - startY);
-                    
-                    if (deltaY > 10) {
-                        isScrolling = true;
-                        e.stopPropagation();
-                    }
+                    // Sempre permite o scroll dentro do backContent
+                    e.stopPropagation();
                 }, { passive: true });
 
                 backContent.addEventListener('touchend', function(e) {
-                    if (!isScrolling) {
-                        e.stopPropagation();
+                    e.stopPropagation();
+                }, { passive: true });
+            }
+
+            // Impede que toques na área do verso virem o cartão
+            const flipCardBack = document.querySelector('.flip-card-back');
+            if (flipCardBack) {
+                flipCardBack.addEventListener('touchstart', function(e) {
+                    // Apenas vira se tocar no header
+                    if (!e.target.closest('.back-content') && !e.target.closest('.social-btn') && !e.target.closest('.copy-btn')) {
+                        return;
                     }
-                    isScrolling = false;
+                    e.stopPropagation();
                 }, { passive: true });
             }
         });
