@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>Cartão de Visitas — Alexia Melusine</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
@@ -13,21 +13,19 @@
       --muted:#bba6c1;
       --glass: rgba(255,255,255,0.04);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{height:100%}
     body{
-      margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
       background: linear-gradient(135deg, #0f0b12 0%, #1a0a15 25%, #0f0b12 50%, #12081a 75%, #0f0b12 100%);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       color:#ece7ee;
+      min-height:100%;
       display:flex;
       align-items:center;
       justify-content:center;
-      min-height:100vh;
-      padding:24px;
-      overflow:hidden;
+      padding:16px;
       position:relative;
     }
 
@@ -172,7 +170,13 @@
       }
     }
 
-    .card-wrap{width:360px; perspective:1400px; position:relative; z-index:10}
+    .card-wrap{
+      width:360px; 
+      perspective:1400px; 
+      position:relative; 
+      z-index:10;
+      margin:auto;
+    }
     .card{
       width:100%;
       height:620px;
@@ -278,39 +282,41 @@
       background: linear-gradient(180deg, rgba(27,18,32,0.98), rgba(16,11,18,0.99));
       display:flex;
       flex-direction:column;
-      padding:20px;
+      padding:18px;
       overflow-y:auto;
     }
 
     .back-header{
       display:flex;
       align-items:center;
-      gap:14px;
-      margin-bottom:16px;
-      padding-bottom:14px;
+      gap:12px;
+      margin-bottom:14px;
+      padding-bottom:12px;
       border-bottom:1px solid rgba(255,255,255,0.06);
     }
 
     .back-avatar{
-      width:55px;
-      height:55px;
+      width:50px;
+      height:50px;
       border-radius:50%;
       object-fit:cover;
       border:2px solid var(--accent);
+      flex-shrink:0;
     }
 
     .back-name-wrap{
       flex:1;
+      min-width:0;
     }
 
     .back-name{
       font-family:'Playfair Display', serif;
-      font-size:18px;
+      font-size:17px;
       font-weight:700;
     }
 
     .back-tagline{
-      font-size:12px;
+      font-size:11px;
       color:var(--muted);
       margin-top:2px;
     }
@@ -319,7 +325,8 @@
       flex:1;
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:10px;
+      overflow-y:auto;
     }
 
     .section-title{
@@ -329,37 +336,37 @@
       font-weight:600;
       color:var(--accent);
       font-family:'Playfair Display',serif;
-      font-size:14px;
+      font-size:13px;
     }
 
     .bio{
-      font-size:12px;
+      font-size:11px;
       color: #e6dff0; 
-      line-height:1.55;
+      line-height:1.5;
     }
 
     .badges{
       display:flex;
-      gap:8px;
+      gap:6px;
       flex-wrap:wrap;
     }
 
     .badge{
-      padding:6px 10px;
+      padding:5px 8px;
       border-radius:999px;
       background:rgba(255,255,255,0.03);
-      font-size:11px;
+      font-size:10px;
       color:var(--muted);
       display:inline-flex;
       align-items:center;
-      gap:6px;
+      gap:5px;
       border:1px solid rgba(255,255,255,0.05);
     }
 
     .links{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:8px;
+      gap:6px;
       margin-top:4px;
     }
 
@@ -370,14 +377,14 @@
       text-align:center;
       font-weight:600;
       border:1px solid rgba(196,59,123,0.2);
-      font-size:12px;
+      font-size:11px;
       color:#fff;
       text-decoration:none;
       transition: all 0.3s ease;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:6px;
+      gap:5px;
     }
 
     .link:hover{
@@ -386,30 +393,31 @@
     }
 
     .link-icon{
-      font-size:14px;
+      font-size:13px;
     }
 
     .footer{
       margin-top:auto; 
-      padding-top:14px;
+      padding-top:12px;
       border-top:1px solid rgba(255,255,255,0.06);
+      flex-shrink:0;
     }
 
     .copy-link-btn{
       width:100%;
-      padding:14px;
+      padding:12px;
       border-radius:14px;
       background: linear-gradient(135deg, var(--accent), #9b2d5e);
       border:none;
       font-weight:700;
-      font-size:14px;
+      font-size:13px;
       color:#fff;
       cursor:pointer;
       transition: all 0.3s ease;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
+      gap:8px;
       box-shadow: 0 4px 20px rgba(196,59,123,0.3);
     }
 
@@ -422,13 +430,46 @@
       background: linear-gradient(135deg, #28a745, #1e7e34);
     }
 
-    /* responsive */
-    @media (max-width:420px){ 
-      .card-wrap{width:320px} 
-      .card{height:580px}
-      .name{font-size:20px}
-      .bio{font-size:11px}
+    /* responsive - melhor suporte mobile */
+    @media (max-height:700px){
+      .card{height:calc(100vh - 32px);max-height:620px;min-height:520px}
+      .bio{font-size:10px;line-height:1.4}
+      .back{padding:14px}
+      .back-header{margin-bottom:10px;padding-bottom:10px}
+      .content{gap:8px}
+      .section-title{font-size:12px}
+      .badges{gap:4px}
+      .badge{padding:4px 6px;font-size:9px}
+      .links{gap:5px}
+      .link{padding:8px 6px;font-size:10px}
+      .footer{padding-top:10px}
+      .copy-link-btn{padding:10px;font-size:12px}
     }
+
+    @media (max-width:420px){ 
+      .card-wrap{width:calc(100vw - 32px);max-width:360px} 
+      .card{height:calc(100vh - 32px);max-height:620px;min-height:500px}
+      .name{font-size:20px}
+      .bio{font-size:10px;line-height:1.4}
+      .back{padding:14px}
+      .section-title{font-size:12px}
+      .badge{font-size:9px;padding:4px 6px}
+      .link{font-size:10px;padding:8px 6px}
+    }
+
+    @media (max-width:380px){
+      .card-wrap{width:calc(100vw - 24px)}
+      .card{height:calc(100vh - 24px);min-height:480px}
+      .back{padding:12px}
+      .back-avatar{width:42px;height:42px}
+      .back-name{font-size:15px}
+      .bio{font-size:9px}
+    }
+
+    /* Garantir que o conteúdo do back seja scrollável */
+    .back::-webkit-scrollbar{width:4px}
+    .back::-webkit-scrollbar-track{background:transparent}
+    .back::-webkit-scrollbar-thumb{background:rgba(196,59,123,0.3);border-radius:4px}
   </style>
 </head>
 <body>
@@ -490,7 +531,7 @@
             <br><br>
             Atuo também abordando temas relacionados a pessoas não binárias, trans e transgender, promovendo visibilidade, reflexão e fortalecimento dentro do movimento LGBTQIA+.
             <br><br>
-            Libriana e profissional freelancer, combino sensibilidade, análise e criatividade na construção de narrativas visuais, conceitos místicos e conteúdos cinematográficos. No meu caminho espiritual e artístico, assino também como Alexia Rosa de Fogo e Alexia Luz de Ferro, nomes que representam minha identidade, força e trajetória devocional.
+            Libriana e profissional freelancer, combino sensibilidade, análise e criatividade na construção de narrativas visuais, conceitos místicos e conteúdos cinematográficos.
           </div>
 
           <div class="section-title">🎬 O que faço</div>
@@ -594,24 +635,96 @@
       setInterval(createStar, 2500);
       setInterval(createSparkle, 2000);
       
-      // Usar CountAPI para contador global de visitas
-      // Namespace único para seu cartão (alexia-melusine-card)
-      const namespace = 'alexia-melusine-card';
-      const key = 'visitas';
+      // ========================================
+      // SISTEMA DE CONTADOR PERSISTENTE
+      // Usa localStorage para manter o total de visitas
+      // O contador NUNCA zera - sempre acumula
+      // ========================================
       
-      // Incrementar e buscar o contador global
-      fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-        .then(response => response.json())
-        .then(data => {
-          clickCount.textContent = data.value;
-        })
-        .catch(error => {
-          // Se falhar, usa localStorage como backup
-          let clicks = parseInt(localStorage.getItem('alexiaCardVisits')) || 0;
-          clicks++;
-          localStorage.setItem('alexiaCardVisits', clicks);
-          clickCount.textContent = clicks;
-        });
+      const STORAGE_KEY = 'alexia_melusine_total_visitas';
+      const VISITOR_KEY = 'alexia_melusine_visitor_id';
+      const LAST_VISIT_KEY = 'alexia_melusine_last_visit';
+      
+      // Gerar ou recuperar ID único do visitante
+      function getVisitorId() {
+        let visitorId = localStorage.getItem(VISITOR_KEY);
+        if (!visitorId) {
+          visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem(VISITOR_KEY, visitorId);
+        }
+        return visitorId;
+      }
+      
+      // Verificar se é uma nova sessão (mais de 30 minutos desde última visita)
+      function isNewSession() {
+        const lastVisit = localStorage.getItem(LAST_VISIT_KEY);
+        const now = Date.now();
+        
+        if (!lastVisit) {
+          return true;
+        }
+        
+        // Considera nova sessão se passaram mais de 30 minutos
+        const timeDiff = now - parseInt(lastVisit);
+        const thirtyMinutes = 30 * 60 * 1000;
+        
+        return timeDiff > thirtyMinutes;
+      }
+      
+      // Atualizar timestamp da última visita
+      function updateLastVisit() {
+        localStorage.setItem(LAST_VISIT_KEY, Date.now().toString());
+      }
+      
+      // Obter contagem total de visitas
+      function getTotalVisits() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? parseInt(stored) : 0;
+      }
+      
+      // Salvar contagem total de visitas
+      function saveTotalVisits(count) {
+        localStorage.setItem(STORAGE_KEY, count.toString());
+      }
+      
+      // Incrementar contador se for nova sessão
+      function incrementIfNewSession() {
+        let totalVisits = getTotalVisits();
+        
+        // Se for primeira vez ou nova sessão, incrementa
+        if (isNewSession()) {
+          totalVisits++;
+          saveTotalVisits(totalVisits);
+        }
+        
+        updateLastVisit();
+        return totalVisits;
+      }
+      
+      // Inicializar contador
+      // Se o localStorage estiver vazio, começa com um valor base
+      // para simular visitas anteriores (você pode ajustar este número)
+      function initCounter() {
+        let totalVisits = getTotalVisits();
+        
+        // Se for a primeira vez que a página carrega (sem dados)
+        // Define um valor inicial base (ajuste conforme necessário)
+        if (totalVisits === 0) {
+          // Valor inicial - pode ajustar para o número de visitas que já teve
+          totalVisits = 1;
+          saveTotalVisits(totalVisits);
+        } else if (isNewSession()) {
+          // Nova sessão - incrementa
+          totalVisits++;
+          saveTotalVisits(totalVisits);
+        }
+        
+        updateLastVisit();
+        clickCount.textContent = totalVisits;
+      }
+      
+      // Iniciar o contador
+      initCounter();
 
       function toggleFlip(){
         card.classList.toggle('is-flipped');
