@@ -39,463 +39,91 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Container para partículas */
-    .particles-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    /* Pétalas de rosa caindo */
-    .petal {
-      position: absolute;
-      top: -50px;
-      opacity: 0.6;
-      animation: fallPetal linear infinite;
-      pointer-events: none;
-    }
-
+    /* Partículas */
+    .particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
+    .petal { position: absolute; top: -50px; opacity: 0.6; animation: fallPetal linear infinite; pointer-events: none; }
     @keyframes fallPetal {
-      0% {
-        transform: translateY(0) rotate(0deg) translateX(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.6;
-      }
-      90% {
-        opacity: 0.4;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg) translateX(50px);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) rotate(0deg) translateX(0); opacity:0; }
+      10% { opacity:0.6; }
+      90% { opacity:0.4; }
+      100% { transform: translateY(100vh) rotate(360deg) translateX(50px); opacity:0; }
     }
-
-    /* Estrelas brilhantes */
-    .star {
-      position: absolute;
-      top: -20px;
-      width: 4px;
-      height: 4px;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0;
-      animation: fallStar linear infinite;
-      box-shadow: 0 0 6px 2px rgba(255,255,255,0.5), 0 0 12px 4px rgba(196,59,123,0.3);
-    }
-
+    .star { position: absolute; top:-20px; width:4px; height:4px; background:#fff; border-radius:50%; opacity:0; animation: fallStar linear infinite; box-shadow: 0 0 6px 2px rgba(255,255,255,0.5), 0 0 12px 4px rgba(196,59,123,0.3); }
     @keyframes fallStar {
-      0% {
-        transform: translateY(0) scale(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.8;
-        transform: translateY(10vh) scale(1);
-      }
-      90% {
-        opacity: 0.4;
-      }
-      100% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(0); opacity:0; }
+      10% { opacity:0.8; transform: translateY(10vh) scale(1); }
+      90% { opacity:0.4; }
+      100% { transform: translateY(100vh) scale(0.5); opacity:0; }
     }
-
-    /* Brilhos sutis flutuantes */
-    .sparkle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: rgba(196,59,123,0.8);
-      border-radius: 50%;
-      animation: sparkleFloat 8s ease-in-out infinite;
-      box-shadow: 0 0 10px 3px rgba(196,59,123,0.4);
-    }
-
+    .sparkle { position: absolute; width: 2px; height: 2px; background: rgba(196,59,123,0.8); border-radius: 50%; animation: sparkleFloat 8s ease-in-out infinite; box-shadow: 0 0 10px 3px rgba(196,59,123,0.4); }
     @keyframes sparkleFloat {
-      0%, 100% {
-        transform: translateY(0) translateX(0) scale(1);
-        opacity: 0.3;
-      }
-      25% {
-        transform: translateY(-30px) translateX(20px) scale(1.5);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translateY(-10px) translateX(-10px) scale(1);
-        opacity: 0.4;
-      }
-      75% {
-        transform: translateY(-40px) translateX(15px) scale(1.3);
-        opacity: 0.6;
-      }
+      0%,100% { transform: translateY(0) translateX(0) scale(1); opacity:0.3; }
+      25% { transform: translateY(-30px) translateX(20px) scale(1.5); opacity:0.7; }
+      50% { transform: translateY(-10px) translateX(-10px) scale(1); opacity:0.4; }
+      75% { transform: translateY(-40px) translateX(15px) scale(1.3); opacity:0.6; }
     }
 
-    /* Aura gradiente suave atrás do card */
-    .aura {
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(196,59,123,0.15) 0%, rgba(80,20,60,0.08) 40%, transparent 70%);
-      animation: auraFloat 10s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
+    /* Aura atrás do cartão */
+    .aura { position: fixed; width:600px; height:600px; border-radius:50%; background: radial-gradient(circle, rgba(196,59,123,0.15) 0%, rgba(80,20,60,0.08) 40%, transparent 70%); animation:auraFloat 10s ease-in-out infinite; pointer-events:none; z-index:0; }
+    .aura-1 { top:-200px; left:-200px; animation-delay:0s; }
+    .aura-2 { bottom:-200px; right:-200px; animation-delay:-5s; background: radial-gradient(circle, rgba(100,30,80,0.12) 0%, rgba(60,20,80,0.06) 40%, transparent 70%); }
+    @keyframes auraFloat { 0%,100% { transform:translate(0,0) scale(1); opacity:0.6; } 50% { transform:translate(30px,20px) scale(1.1); opacity:0.8; } }
 
-    .aura-1 {
-      top: -200px;
-      left: -200px;
-      animation-delay: 0s;
-    }
-
-    .aura-2 {
-      bottom: -200px;
-      right: -200px;
-      animation-delay: -5s;
-      background: radial-gradient(circle, rgba(100,30,80,0.12) 0%, rgba(60,20,80,0.06) 40%, transparent 70%);
-    }
-
-    @keyframes auraFloat {
-      0%, 100% {
-        transform: translate(0, 0) scale(1);
-        opacity: 0.6;
-      }
-      50% {
-        transform: translate(30px, 20px) scale(1.1);
-        opacity: 0.8;
-      }
-    }
-
+    /* Cartão */
     .card-wrap{width:360px; perspective:1400px; position:relative; z-index:10}
-    .card{
-      width:100%;
-      height:620px;
-      position:relative;
-      transform-style:preserve-3d;
-      transition:transform .9s cubic-bezier(.2,.9,.3,1);
-      border-radius:20px;
-      cursor:pointer;
-    }
+    .card{width:100%; height:620px; position:relative; transform-style:preserve-3d; transition:transform .9s cubic-bezier(.2,.9,.3,1); border-radius:20px; cursor:pointer;}
     .card.is-flipped{transform:rotateY(180deg)}
-
-    .side{
-      position:absolute; 
-      inset:0; 
-      backface-visibility:hidden; 
-      -webkit-backface-visibility:hidden;
-      border-radius:20px;
-      box-shadow: 0 10px 40px rgba(3,2,6,0.6);
-      overflow:hidden;
-    }
-
-    /* FRONT - Foto limpa */
-    .front{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12)), var(--card-1);
-    }
-
-    .photo-container{
-      position:relative;
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      border-radius:20px;
-    }
-
-    .photo-container img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      filter: brightness(0.9);
-    }
-
-    .photo-overlay{
-      position:absolute;
-      inset:0;
-      background: linear-gradient(180deg, rgba(15,11,18,0.4) 0%, rgba(15,11,18,0.05) 30%, rgba(15,11,18,0.05) 70%, rgba(15,11,18,0.7) 100%);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      padding:24px;
-    }
-
-    .overlay-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-
-    .overlay-footer{
-      text-align:center;
-    }
-
-    .name{
-      font-family:'Playfair Display', serif; 
-      font-size:24px; 
-      font-weight:700; 
-      letter-spacing:0.6px;
-      text-shadow: 0 2px 15px rgba(0,0,0,0.8);
-      margin-bottom:6px;
-    }
-
-    .tagline{
-      font-size:13px;
-      color:rgba(255,255,255,0.85);
-      text-shadow: 0 1px 10px rgba(0,0,0,0.8);
-      margin-bottom:14px;
-    }
-
-    .flip-hint{
-      font-size:11px;
-      color:rgba(255,255,255,0.6);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse{
-      0%,100%{opacity:0.6}
-      50%{opacity:1}
-    }
-
-    .small{font-size:12px;color:var(--muted)}
-
-    .visit-badge {
-      color:rgba(255,255,255,0.9);
-      background:rgba(0,0,0,0.4);
-      padding:6px 12px;
-      border-radius:12px;
-      font-size:12px;
-      display:flex;
-      align-items:center;
-      gap:6px;
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-weight: 500;
-    }
-
-    .visit-badge svg {
-      width: 14px;
-      height: 14px;
-      opacity: 0.9;
-    }
-
-    .visit-badge .count {
-      font-weight: 700;
-      color: #fff;
-      min-width: 20px;
-      text-align: center;
-    }
-
-    /* BACK */
-    .back{
-      transform:rotateY(180deg); 
-      background: linear-gradient(180deg, rgba(27,18,32,0.98), rgba(16,11,18,0.99));
-      display:flex;
-      flex-direction:column;
-      padding:20px;
-      overflow-y:auto;
-    }
-
-    .back-header{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:16px;
-      padding-bottom:14px;
-      border-bottom:1px solid rgba(255,255,255,0.06);
-    }
-
-    .back-avatar{
-      width:55px;
-      height:55px;
-      border-radius:50%;
-      object-fit:cover;
-      border:2px solid var(--accent);
-    }
-
-    .back-name-wrap{
-      flex:1;
-    }
-
-    .back-name{
-      font-family:'Playfair Display', serif;
-      font-size:18px;
-      font-weight:700;
-    }
-
-    .back-tagline{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:2px;
-    }
-
-    .content{
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-
-    .section-title{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-weight:600;
-      color:var(--accent);
-      font-family:'Playfair Display',serif;
-      font-size:14px;
-    }
-
-    .bio{
-      font-size:12px;
-      color: #e6dff0; 
-      line-height:1.55;
-    }
-
-    .badges{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .badge{
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.03);
-      font-size:11px;
-      color:var(--muted);
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      border:1px solid rgba(255,255,255,0.05);
-    }
-
-    .links{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:8px;
-      margin-top:4px;
-    }
-
-    .link{
-      padding:10px 8px;
-      border-radius:12px;
-      background:linear-gradient(180deg, rgba(196,59,123,0.15), rgba(196,59,123,0.05));
-      text-align:center;
-      font-weight:600;
-      border:1px solid rgba(196,59,123,0.2);
-      font-size:12px;
-      color:#fff;
-      text-decoration:none;
-      transition: all 0.3s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-    }
-
-    .link:hover{
-      background:linear-gradient(180deg, rgba(196,59,123,0.25), rgba(196,59,123,0.1));
-      transform:translateY(-2px);
-    }
-
-    .link-icon{
-      font-size:14px;
-    }
-
-    .footer{
-      margin-top:auto; 
-      padding-top:14px;
-      border-top:1px solid rgba(255,255,255,0.06);
-    }
-
-    .copy-link-btn{
-      width:100%;
-      padding:14px;
-      border-radius:14px;
-      background: linear-gradient(135deg, var(--accent), #9b2d5e);
-      border:none;
-      font-weight:700;
-      font-size:14px;
-      color:#fff;
-      cursor:pointer;
-      transition: all 0.3s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      box-shadow: 0 4px 20px rgba(196,59,123,0.3);
-    }
-
-    .copy-link-btn:hover{
-      transform:translateY(-2px);
-      box-shadow: 0 6px 25px rgba(196,59,123,0.4);
-    }
-
-    .copy-link-btn.copied{
-      background: linear-gradient(135deg, #28a745, #1e7e34);
-    }
-
-    /* Animação do contador */
-    @keyframes countPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    .count-animate {
-      animation: countPulse 0.5s ease;
-    }
-
-    /* Loading spinner */
-    .loading-spinner {
-      width: 12px;
-      height: 12px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* responsive */
-    @media (max-width:420px){ 
-      .card-wrap{width:320px} 
-      .card{height:580px}
-      .name{font-size:20px}
-      .bio{font-size:11px}
-    }
+    .side{position:absolute; inset:0; backface-visibility:hidden; border-radius:20px; box-shadow:0 10px 40px rgba(3,2,6,0.6); overflow:hidden;}
+    .front{display:flex; flex-direction:column; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12)), var(--card-1);}
+    .photo-container{position:relative;width:100%;height:100%;overflow:hidden;border-radius:20px;}
+    .photo-container img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.9);}
+    .photo-overlay{position:absolute; inset:0; background: linear-gradient(180deg, rgba(15,11,18,0.4) 0%, rgba(15,11,18,0.05) 30%, rgba(15,11,18,0.05) 70%, rgba(15,11,18,0.7) 100%); display:flex; flex-direction:column; justify-content:space-between; padding:24px;}
+    .overlay-header{display:flex; align-items:center; justify-content:space-between;}
+    .overlay-footer{text-align:center;}
+    .name{font-family:'Playfair Display', serif;font-size:24px;font-weight:700;letter-spacing:0.6px;text-shadow:0 2px 15px rgba(0,0,0,0.8);margin-bottom:6px;}
+    .tagline{font-size:13px;color:rgba(255,255,255,0.85);text-shadow:0 1px 10px rgba(0,0,0,0.8);margin-bottom:14px;}
+    .flip-hint{font-size:11px;color:rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;gap:6px;animation:pulse 2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:0.6}50%{opacity:1}}
+    .small{font-size:12px;color:var(--muted);}
+    .visit-badge{color:rgba(255,255,255,0.9);background:rgba(0,0,0,0.4);padding:6px 12px;border-radius:12px;font-size:12px;display:flex;align-items:center;gap:6px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);font-weight:500;}
+    .visit-badge svg{width:14px;height:14px;opacity:0.9;}
+    .visit-badge .count{font-weight:700;color:#fff;min-width:20px;text-align:center;}
+    .back{transform:rotateY(180deg);background: linear-gradient(180deg, rgba(27,18,32,0.98), rgba(16,11,18,0.99)); display:flex; flex-direction:column; padding:20px; overflow-y:auto;}
+    .back-header{display:flex; align-items:center; gap:14px; margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.06);}
+    .back-avatar{width:55px;height:55px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);}
+    .back-name-wrap{flex:1;}
+    .back-name{font-family:'Playfair Display', serif;font-size:18px;font-weight:700;}
+    .back-tagline{font-size:12px;color:var(--muted);margin-top:2px;}
+    .content{flex:1;display:flex;flex-direction:column;gap:12px;}
+    .section-title{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;font-size:14px;}
+    .bio{font-size:12px;color:#e6dff0;line-height:1.55;}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;}
+    .badge{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,0.05);}
+    .links{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
+    .link{padding:10px 8px;border-radius:12px;background:linear-gradient(180deg, rgba(196,59,123,0.15), rgba(196,59,123,0.05));text-align:center;font-weight:600;border:1px solid rgba(196,59,123,0.2);font-size:12px;color:#fff;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.3s ease;}
+    .link:hover{background:linear-gradient(180deg, rgba(196,59,123,0.25), rgba(196,59,123,0.1));transform:translateY(-2px);}
+    .footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);}
+    .copy-link-btn{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#9b2d5e);border:none;font-weight:700;font-size:14px;color:#fff;cursor:pointer;transition:all 0.3s ease;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(196,59,123,0.3);}
+    .copy-link-btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(196,59,123,0.4);}
+    .copy-link-btn.copied{background:linear-gradient(135deg,#28a745,#1e7e34);}
+    @keyframes countPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+    .count-animate{animation:countPulse 0.5s ease;}
+    .loading-spinner{width:12px;height:12px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.8s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    @media (max-width:420px){ .card-wrap{width:320px} .card{height:580px} .name{font-size:20px} .bio{font-size:11px} }
   </style>
 </head>
 <body>
-  <!-- Auras de fundo -->
+  <!-- Auras -->
   <div class="aura aura-1"></div>
   <div class="aura aura-2"></div>
-  
-  <!-- Container de partículas -->
+
+  <!-- Partículas -->
   <div class="particles-container" id="particlesContainer"></div>
 
+  <!-- Cartão -->
   <div class="card-wrap" aria-label="Cartão virtual de Alexia Melusine">
     <div class="card" id="card">
-
-      <!-- FRENTE - Foto limpa sem texto sobreposto -->
       <div class="side front" id="front">
         <div class="photo-container">
           <img src="https://raw.githubusercontent.com/alexialuzdeferro/cart-o-visita/main/ale.jpeg" alt="Foto de Alexia Melusine"/>
@@ -514,7 +142,6 @@
                 <span class="count" id="visitCount"><div class="loading-spinner"></div></span>
               </div>
             </div>
-
             <div class="overlay-footer">
               <div class="name">Alexia Melusine 🌹</div>
               <div class="tagline">Criadora de conteúdo</div>
@@ -532,7 +159,6 @@
         </div>
       </div>
 
-      <!-- VERSO - Informações completas -->
       <div class="side back">
         <div class="back-header">
           <img class="back-avatar" src="https://raw.githubusercontent.com/alexialuzdeferro/cart-o-visita/main/ale.jpeg" alt="Alexia"/>
@@ -541,7 +167,6 @@
             <div class="back-tagline">Criadora de conteúdo</div>
           </div>
         </div>
-
         <div class="content">
           <div class="section-title">✨ Sobre mim</div>
           <div class="bio">
@@ -551,7 +176,6 @@
             <br><br>
             Libriana e profissional freelancer, combino sensibilidade, análise e criatividade na construção de narrativas visuais, conceitos místicos e conteúdos cinematográficos. No meu caminho espiritual e artístico, assino também como Alexia Rosa de Fogo e Alexia Luz de Ferro, nomes que representam minha identidade, força e trajetória devocional.
           </div>
-
           <div class="section-title">🎬 O que faço</div>
           <div class="badges">
             <div class="badge">📱 Criação de conteúdo</div>
@@ -559,24 +183,14 @@
             <div class="badge">🎨 Prompts</div>
             <div class="badge">🤖 Pesquisas de IA</div>
           </div>
-
           <div class="section-title">🔗 Portfólio</div>
           <div class="links">
-            <a class="link" href="https://www.tiktok.com/@almasdepombagira?lang=pt-BR" target="_blank" rel="noopener">
-              <span class="link-icon">🎵</span> TikTok
-            </a>
-            <a class="link" href="https://www.instagram.com/almasdepombagira/?igsh=Y3VocnA2aDQxYjlw" target="_blank" rel="noopener">
-              <span class="link-icon">📸</span> Instagram
-            </a>
-            <a class="link" href="https://www.youtube.com/@almasdepombagira" target="_blank" rel="noopener">
-              <span class="link-icon">▶️</span> YouTube
-            </a>
-            <a class="link" href="https://www.kwai.com/@AlexiaRosadeFogo" target="_blank" rel="noopener">
-              <span class="link-icon">🎬</span> Kwai
-            </a>
+            <a class="link" href="https://www.tiktok.com/@almasdepombagira?lang=pt-BR" target="_blank" rel="noopener"><span class="link-icon">🎵</span> TikTok</a>
+            <a class="link" href="https://www.instagram.com/almasdepombagira/?igsh=Y3VocnA2aDQxYjlw" target="_blank" rel="noopener"><span class="link-icon">📸</span> Instagram</a>
+            <a class="link" href="https://www.youtube.com/@almasdepombagira" target="_blank" rel="noopener"><span class="link-icon">▶️</span> YouTube</a>
+            <a class="link" href="https://www.kwai.com/@AlexiaRosadeFogo" target="_blank" rel="noopener"><span class="link-icon">🎬</span> Kwai</a>
           </div>
         </div>
-
         <div class="footer">
           <button class="copy-link-btn" id="copyLinkBtn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -587,7 +201,6 @@
           </button>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -596,171 +209,58 @@
       const card = document.getElementById('card');
       const copyLinkBtn = document.getElementById('copyLinkBtn');
       const visitCountEl = document.getElementById('visitCount');
-      
-      // ========== CONFIGURAÇÃO SUPABASE ==========
+
+      // Supabase
       const SUPABASE_URL = 'https://qvbjwzszdijhydgcqvyu.supabase.co';
       const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2Ymp3enN6ZGlqaHlkZ2Nxdnl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2OTg2NDUsImV4cCI6MjA2NDI3NDY0NX0.sb_publishable_v3VNtkPr6WBgbZnwVTxCFA_e7Mw5PAN';
-      
-      // Inicializar cliente Supabase
       const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      
-      // ========== CONTADOR DE VISITAS COM SUPABASE ==========
+
       const SESSION_KEY = 'alexia_session_counted';
       const ROUTE = '/cartao-alexia';
-      
-      // Função para atualizar o contador na tela
-      function updateCounterDisplay(count) {
+
+      function updateCounterDisplay(count){
         visitCountEl.textContent = count.toLocaleString('pt-BR');
         visitCountEl.classList.add('count-animate');
-        setTimeout(() => visitCountEl.classList.remove('count-animate'), 500);
+        setTimeout(()=>visitCountEl.classList.remove('count-animate'),500);
       }
-      
-      // Função para usar localStorage como fallback
-      function useLocalStorage() {
+
+      function useLocalStorage(){
         const STORAGE_KEY = 'alexia_card_visits';
         const sessionCounted = sessionStorage.getItem(SESSION_KEY);
         let count = parseInt(localStorage.getItem(STORAGE_KEY)) || 0;
-        
-        if (!sessionCounted) {
-          count++;
-          localStorage.setItem(STORAGE_KEY, count.toString());
-          sessionStorage.setItem(SESSION_KEY, 'true');
-        }
-        
+        if(!sessionCounted){ count++; localStorage.setItem(STORAGE_KEY,count); sessionStorage.setItem(SESSION_KEY,'true'); }
         updateCounterDisplay(count);
       }
-      
-      // Função principal para gerenciar o contador
-      async function initVisitCounter() {
+
+      async function initVisitCounter(){
         const sessionCounted = sessionStorage.getItem(SESSION_KEY);
-        
-        try {
-          // Se ainda não contou nessa sessão, inserir nova visita
-          if (!sessionCounted) {
-            const { error: insertError } = await supabase
-              .from('page_visits')
-              .insert([{ route: ROUTE }]);
-            
-            if (insertError) {
-              console.error('Erro ao inserir visita:', insertError);
-              throw insertError;
-            }
-            
-            sessionStorage.setItem(SESSION_KEY, 'true');
+        try{
+          if(!sessionCounted){
+            const { error:insertError } = await supabase.from('page_visits').insert([{ route:ROUTE }]);
+            if(insertError) throw insertError;
+            sessionStorage.setItem(SESSION_KEY,'true');
           }
-          
-          // Contar total de visitas para essa rota
-          const { count, error: countError } = await supabase
-            .from('page_visits')
-            .select('*', { count: 'exact', head: true })
-            .eq('route', ROUTE);
-          
-          if (countError) {
-            console.error('Erro ao contar visitas:', countError);
-            throw countError;
-          }
-          
+          const { count, error:countError } = await supabase.from('page_visits').select('*',{count:'exact',head:true}).eq('route',ROUTE);
+          if(countError) throw countError;
           updateCounterDisplay(count || 0);
-          
-        } catch (error) {
-          console.error('Erro Supabase:', error);
-          console.log('Usando localStorage como fallback...');
-          useLocalStorage();
-        }
+        } catch(err){ console.error(err); useLocalStorage(); }
       }
-      
-      // Inicializar contador
       initVisitCounter();
-      
-      // ========== SISTEMA DE PARTÍCULAS ==========
+
+      // Partículas
       const particlesContainer = document.getElementById('particlesContainer');
-      
-      // Função para criar pétala de rosa
-      function createPetal() {
-        const petal = document.createElement('div');
-        petal.className = 'petal';
-        petal.innerHTML = '🌸';
-        petal.style.left = Math.random() * 100 + 'vw';
-        petal.style.fontSize = (Math.random() * 12 + 8) + 'px';
-        petal.style.animationDuration = (Math.random() * 8 + 10) + 's';
-        petal.style.animationDelay = Math.random() * 5 + 's';
-        particlesContainer.appendChild(petal);
-        
-        setTimeout(() => petal.remove(), 18000);
-      }
-      
-      // Função para criar estrela
-      function createStar() {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + 'vw';
-        star.style.width = (Math.random() * 3 + 2) + 'px';
-        star.style.height = star.style.width;
-        star.style.animationDuration = (Math.random() * 6 + 8) + 's';
-        star.style.animationDelay = Math.random() * 3 + 's';
-        particlesContainer.appendChild(star);
-        
-        setTimeout(() => star.remove(), 14000);
-      }
-      
-      // Função para criar brilho flutuante
-      function createSparkle() {
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        sparkle.style.left = Math.random() * 100 + 'vw';
-        sparkle.style.top = Math.random() * 100 + 'vh';
-        sparkle.style.animationDuration = (Math.random() * 4 + 6) + 's';
-        sparkle.style.animationDelay = Math.random() * 2 + 's';
-        particlesContainer.appendChild(sparkle);
-        
-        setTimeout(() => sparkle.remove(), 12000);
-      }
-      
-      // Criar partículas iniciais
-      for(let i = 0; i < 5; i++) {
-        setTimeout(() => createPetal(), i * 1000);
-        setTimeout(() => createStar(), i * 800);
-        setTimeout(() => createSparkle(), i * 600);
-      }
-      
-      // Continuar criando partículas periodicamente
-      setInterval(createPetal, 3000);
-      setInterval(createStar, 2500);
-      setInterval(createSparkle, 2000);
+      function createPetal(){ const petal=document.createElement('div'); petal.className='petal'; petal.innerHTML='🌸'; petal.style.left=Math.random()*100+'vw'; petal.style.fontSize=(Math.random()*12+8)+'px'; petal.style.animationDuration=(Math.random()*8+10)+'s'; petal.style.animationDelay=Math.random()*5+'s'; particlesContainer.appendChild(petal); setTimeout(()=>petal.remove(),18000);}
+      function createStar(){ const star=document.createElement('div'); star.className='star'; star.style.left=Math.random()*100+'vw'; star.style.width=(Math.random()*3+2)+'px'; star.style.height=star.style.width; star.style.animationDuration=(Math.random()*6+8)+'s'; star.style.animationDelay=Math.random()*3+'s'; particlesContainer.appendChild(star); setTimeout(()=>star.remove(),14000);}
+      function createSparkle(){ const sparkle=document.createElement('div'); sparkle.className='sparkle'; sparkle.style.left=Math.random()*100+'vw'; sparkle.style.top=Math.random()*100+'vh'; sparkle.style.animationDuration=(Math.random()*4+6)+'s'; sparkle.style.animationDelay=Math.random()*2+'s'; particlesContainer.appendChild(sparkle); setTimeout(()=>sparkle.remove(),12000);}
+      for(let i=0;i<5;i++){ setTimeout(()=>createPetal(),i*1000); setTimeout(()=>createStar(),i*800); setTimeout(()=>createSparkle(),i*600); }
+      setInterval(createPetal,3000); setInterval(createStar,2500); setInterval(createSparkle,2000);
 
-      // ========== FUNCIONALIDADE DO CARTÃO ==========
-      
-      function toggleFlip(){
-        card.classList.toggle('is-flipped');
-      }
+      // Flip do cartão
+      function toggleFlip(){ card.classList.toggle('is-flipped'); }
+      card.addEventListener('click', e=>{ if(e.target.closest('a') || e.target.closest('#copyLinkBtn')) return; toggleFlip(); });
 
-      // Clicar em qualquer lugar do cartão vira ele
-      card.addEventListener('click', function(e){
-        // Não virar se clicar nos links ou botão de copiar
-        if(e.target.closest('a') || e.target.closest('#copyLinkBtn')){
-          return;
-        }
-        toggleFlip();
-      });
-
-      // Copiar link do cartão
-      copyLinkBtn.addEventListener('click', function(e){
-        e.stopPropagation();
-        const cardLink = window.location.href;
-        if(navigator.clipboard){
-          navigator.clipboard.writeText(cardLink).then(()=>{
-            copyLinkBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Link copiado!';
-            copyLinkBtn.classList.add('copied');
-            setTimeout(()=> {
-              copyLinkBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copiar link do cartão';
-              copyLinkBtn.classList.remove('copied');
-            }, 2000);
-          });
-        } else {
-          prompt('Copie este link:', cardLink);
-        }
-      });
-
+      // Copiar link
+      copyLinkBtn.addEventListener('click', e=>{ e.stopPropagation(); const cardLink = window.location.href; if(navigator.clipboard){ navigator.clipboard.writeText(cardLink).then(()=>{ copyLinkBtn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Link copiado!'; copyLinkBtn.classList.add('copied'); setTimeout(()=>{ copyLinkBtn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copiar link do cartão'; copyLinkBtn.classList.remove('copied'); },2000); }); } else { prompt('Copie este link:',cardLink); }});
     })();
   </script>
 </body>
