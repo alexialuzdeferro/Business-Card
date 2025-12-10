@@ -181,21 +181,53 @@
 
 
 
-        .back-header-clickable {
+	        .copy-link-indicator {
+	            position: absolute;
+	            top: 10px;
+	            left: 10px;
+	            width: 30px;
+	            height: 30px;
+	            border: 2px solid rgba(255, 255, 255, 0.1); /* Borda muito transparente */
+	            border-radius: 50%;
+	            border-right-color: transparent;
+	            border-bottom-color: transparent;
+	            transform: rotate(45deg);
+	            opacity: 0.5; /* Transparência */
+	            transition: opacity 0.3s ease;
+	            z-index: 10;
+	        }
+	
+	        .copy-link-indicator::after {
+	            content: '';
+	            position: absolute;
+	            width: 8px;
+	            height: 2px;
+	            background: rgba(255, 255, 255, 0.1); /* Cor da ponta da seta */
+	            top: 2px;
+	            left: 20px;
+	            transform: rotate(45deg);
+	        }
+	
+	        .copy-link-indicator:hover {
+	            opacity: 0.8;
+	        }
+	
+	        .back-header-clickable {
             flex-shrink: 0;
             cursor: pointer;
             text-align: center;
         }
 
-        .photo-back {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 10px;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-        }
+	        .photo-back {
+	            width: 70px;
+	            height: 70px;
+	            border-radius: 50%;
+	            object-fit: cover;
+	            object-position: center 20%; /* Ajuste para centralizar o rosto (exemplo: 20% de cima para baixo) */
+	            margin: 0 auto 10px;
+	            border: 2px solid rgba(255, 255, 255, 0.4);
+	            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+	        }
 
         .back-header {
             text-align: center;
@@ -477,7 +509,8 @@
 
     <div class="flip-card" id="flipCard">
         <div class="flip-card-inner">
-            <div class="flip-card-front" onclick="flipCard()">
+	            <div class="flip-card-front" onclick="flipCard()">
+	                <div class="copy-link-indicator"></div>
 
                 <img src="https://raw.githubusercontent.com/alexialuzdeferro/Business-Card/main/ale.jpeg" alt="Alexia Melusine" class="photo-front">
                 <div class="front-overlay">
@@ -512,7 +545,7 @@
                             <a href="https://www.tiktok.com/@almasdepombagira?lang=pt-BR" target="_blank" class="social-btn" onclick="event.stopPropagation()">🎶 TikTok</a>
                             <a href="https://t.me/pomba_giras" target="_blank" class="social-btn" onclick="event.stopPropagation()">✈️ Telegram</a>
                             <a href="https://whatsapp.com/channel/0029VbBs2AnJkK7J9J0nLr2G" target="_blank" class="social-btn" onclick="event.stopPropagation()">💬 WhatsApp</a>
-                            <button class="copy-btn" onclick="copyLink(event)">🔗 Copiar link do cartão</button>
+
                         </div>
                     </div>
 
