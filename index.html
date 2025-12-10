@@ -295,22 +295,22 @@
             box-shadow: 0 4px 15px rgba(255, 20, 147, 0.15);
         }
 
-        .portfolio-section h3 {
-            font-size: 13px;
+	        .portfolio-section h3 {
+	            font-size: 13px;
             color: #ff69b4;
             margin-bottom: 10px;
             text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
             text-align: center;
         }
 
-        .social-grid {
-            display: grid;
+	        .social-grid {
+	            display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
         }
 
-        .social-btn {
-            padding: 10px 8px;
+	        .social-btn {
+	            padding: 10px 8px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
             color: white;
             text-decoration: none;
@@ -324,9 +324,53 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            position: relative;
-            overflow: hidden;
-        }
+	            position: relative;
+	            overflow: hidden;
+	        }
+	
+	        .highlight-phrase {
+	            text-align: center;
+	            font-size: 12px;
+	            font-style: italic;
+	            color: #ff69b4; /* Cor de destaque */
+	            margin: 15px 0 10px;
+	            padding: 5px 0;
+	            border-top: 1px solid rgba(255, 105, 180, 0.2);
+	            border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+	            text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+	        }
+	
+	        .site-button {
+	            display: block;
+	            width: 100%;
+	            padding: 12px;
+	            margin-top: 10px;
+	            background: linear-gradient(90deg, #ff69b4 0%, #8b0000 100%); /* Gradiente chamativo */
+	            color: white;
+	            text-align: center;
+	            text-decoration: none;
+	            border-radius: 8px;
+	            font-size: 14px;
+	            font-weight: bold;
+	            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+	            transition: all 0.3s ease;
+	            border: none;
+	        }
+	
+	        .site-button:hover {
+	            background: linear-gradient(90deg, #ff85c1 0%, #a00000 100%);
+	            transform: translateY(-2px);
+	            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+	        }
+	
+	        .site-button:active {
+	            transform: translateY(0);
+	        }
+	
+	        /* Ajuste o gap do back-content para acomodar o novo botão */
+	        .back-content {
+	            gap: 10px; /* Mantém o espaçamento entre os elementos */
+	        }
 
         .social-btn::before {
             content: '';
@@ -471,6 +515,12 @@
                             <button class="copy-btn" onclick="copyLink(event)">🔗 Copiar link do cartão</button>
                         </div>
                     </div>
+
+                    <p class="highlight-phrase">"Quem tem fé, tem tudo. Quem não tem, me respeita."</p>
+
+                    <a href="https://bio.site/AlmasdePombagira" target="_blank" class="site-button" onclick="event.stopPropagation()">
+                        Acesse Meu Site Oficial
+                    </a>
                 </div>
             </div>
         </div>
