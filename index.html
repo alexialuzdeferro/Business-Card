@@ -18,16 +18,161 @@
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(196,59,123,0.08), transparent), radial-gradient(900px 400px at 90% 90%, rgba(80,40,90,0.06), transparent), var(--bg);
+      background: linear-gradient(135deg, #0f0b12 0%, #1a0a15 25%, #0f0b12 50%, #12081a 75%, #0f0b12 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
       color:#ece7ee;
       display:flex;
       align-items:center;
       justify-content:center;
       min-height:100vh;
       padding:24px;
+      overflow:hidden;
+      position:relative;
     }
 
-    .card-wrap{width:360px; perspective:1400px}
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Container para partículas */
+    .particles-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    /* Pétalas de rosa caindo */
+    .petal {
+      position: absolute;
+      top: -50px;
+      opacity: 0.6;
+      animation: fallPetal linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fallPetal {
+      0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg) translateX(50px);
+        opacity: 0;
+      }
+    }
+
+    /* Estrelas brilhantes */
+    .star {
+      position: absolute;
+      top: -20px;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      animation: fallStar linear infinite;
+      box-shadow: 0 0 6px 2px rgba(255,255,255,0.5), 0 0 12px 4px rgba(196,59,123,0.3);
+    }
+
+    @keyframes fallStar {
+      0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+        transform: translateY(10vh) scale(1);
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    /* Brilhos sutis flutuantes */
+    .sparkle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(196,59,123,0.8);
+      border-radius: 50%;
+      animation: sparkleFloat 8s ease-in-out infinite;
+      box-shadow: 0 0 10px 3px rgba(196,59,123,0.4);
+    }
+
+    @keyframes sparkleFloat {
+      0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+      }
+      25% {
+        transform: translateY(-30px) translateX(20px) scale(1.5);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(-10px) translateX(-10px) scale(1);
+        opacity: 0.4;
+      }
+      75% {
+        transform: translateY(-40px) translateX(15px) scale(1.3);
+        opacity: 0.6;
+      }
+    }
+
+    /* Aura gradiente suave atrás do card */
+    .aura {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,59,123,0.15) 0%, rgba(80,20,60,0.08) 40%, transparent 70%);
+      animation: auraFloat 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .aura-1 {
+      top: -200px;
+      left: -200px;
+      animation-delay: 0s;
+    }
+
+    .aura-2 {
+      bottom: -200px;
+      right: -200px;
+      animation-delay: -5s;
+      background: radial-gradient(circle, rgba(100,30,80,0.12) 0%, rgba(60,20,80,0.06) 40%, transparent 70%);
+    }
+
+    @keyframes auraFloat {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(30px, 20px) scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    .card-wrap{width:360px; perspective:1400px; position:relative; z-index:10}
     .card{
       width:100%;
       height:620px;
@@ -287,6 +432,13 @@
   </style>
 </head>
 <body>
+  <!-- Auras de fundo -->
+  <div class="aura aura-1"></div>
+  <div class="aura aura-2"></div>
+  
+  <!-- Container de partículas -->
+  <div class="particles-container" id="particlesContainer"></div>
+
   <div class="card-wrap" aria-label="Cartão virtual de Alexia Melusine">
     <div class="card" id="card">
 
@@ -385,6 +537,62 @@
       const card = document.getElementById('card');
       const copyLinkBtn = document.getElementById('copyLinkBtn');
       const clickCount = document.getElementById('clickCount');
+      
+      // Criar partículas (pétalas, estrelas e brilhos)
+      const particlesContainer = document.getElementById('particlesContainer');
+      
+      // Função para criar pétala de rosa
+      function createPetal() {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.innerHTML = '🌸';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.fontSize = (Math.random() * 12 + 8) + 'px';
+        petal.style.animationDuration = (Math.random() * 8 + 10) + 's';
+        petal.style.animationDelay = Math.random() * 5 + 's';
+        particlesContainer.appendChild(petal);
+        
+        setTimeout(() => petal.remove(), 18000);
+      }
+      
+      // Função para criar estrela
+      function createStar() {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.width = (Math.random() * 3 + 2) + 'px';
+        star.style.height = star.style.width;
+        star.style.animationDuration = (Math.random() * 6 + 8) + 's';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        particlesContainer.appendChild(star);
+        
+        setTimeout(() => star.remove(), 14000);
+      }
+      
+      // Função para criar brilho flutuante
+      function createSparkle() {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + 'vw';
+        sparkle.style.top = Math.random() * 100 + 'vh';
+        sparkle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        sparkle.style.animationDelay = Math.random() * 2 + 's';
+        particlesContainer.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 12000);
+      }
+      
+      // Criar partículas iniciais
+      for(let i = 0; i < 5; i++) {
+        setTimeout(() => createPetal(), i * 1000);
+        setTimeout(() => createStar(), i * 800);
+        setTimeout(() => createSparkle(), i * 600);
+      }
+      
+      // Continuar criando partículas periodicamente
+      setInterval(createPetal, 3000);
+      setInterval(createStar, 2500);
+      setInterval(createSparkle, 2000);
       
       // Usar CountAPI para contador global de visitas
       // Namespace único para seu cartão (alexia-melusine-card)
