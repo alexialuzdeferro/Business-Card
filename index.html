@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartão de Visitas - Alexia Melusine</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -178,17 +177,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
-        .counter-overlay {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.75);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 10px;
-            border: 1px solid rgba(255, 20, 147, 0.3);
-        }
+
 
         /* Back side styles */
         .photo-back {
@@ -356,7 +345,6 @@
         <div class="flip-card-inner">
             <div class="flip-card-front">
                 <div class="flag-overlay"></div>
-                <div class="counter-overlay" id="counter">Acessos: 0</div>
                 <img src="https://raw.githubusercontent.com/alexialuzdeferro/Business-Card/main/ale.jpeg" alt="Alexia Melusine" class="photo-front">
                 <div class="front-overlay">
                     <h1 class="name-overlay">Alexia Melusine 🌹</h1>
@@ -401,33 +389,6 @@
     </div>
 
     <script>
-        const { createClient } = supabase;
-        const supabaseUrl = 'https://qvbjwzszdijhydgcqvyu.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2Ymp3enN6ZGlqaHlkZ2Nxdnl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjgwMTYwOTYsImV4cCI6MjA0MzU5NDA5Nn0.v3VNtkPr6WBgbZnwVTxCFA_e7Mw5PAN';
-        const supabaseClient = createClient(supabaseUrl, supabaseKey);
-
-        async function updateCounter() {
-            try {
-                let { data, error } = await supabaseClient
-                    .from('card_views')
-                    .select('views')
-                    .eq('id', 1)
-                    .single();
-
-                let currentCount = 0;
-                if (error && error.code === 'PGRST116') {
-                    await supabaseClient.from('card_views').insert([{ id: 1, views: 1 }]);
-                    currentCount = 1;
-                } else if (data) {
-                    currentCount = data.views + 1;
-                    await supabaseClient.from('card_views').update({ views: currentCount }).eq('id', 1);
-                }
-                document.getElementById('counter').textContent = `Acessos: ${currentCount}`;
-            } catch (error) {
-                console.error('Counter error:', error);
-            }
-        }
-
         function flipCard() {
             document.getElementById('flipCard').classList.toggle('flipped');
         }
@@ -453,8 +414,6 @@
 
         setInterval(createParticle, 800);
         for (let i = 0; i < 5; i++) setTimeout(createParticle, i * 150);
-
-        window.addEventListener('load', updateCounter);
     </script>
 </body>
 </html>
