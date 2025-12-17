@@ -215,27 +215,33 @@ Acesse Meu Site Oficial
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const SUPABASE_URL="https://qvbjwzszdijhydgcqvyu.supabase.co";
-const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2Ymp3enN6ZGlqaHlkZ2Nxdnl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzMjA3NDQsImV4cCI6MjA4MDg5Njc0NH0.w__h1N2owBQC5HDedmCjRX4IPcXODs_Kc5RyfYeHk_g";
+const SUPABASE_URL = "https://qvbjwzszdijhydgcqvyu.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2Ymp3enN6ZGlqaHlkZ2Nxdnl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzMjA3NDQsImV4cCI6MjA4MDg5Njc0NH0.w__h1N2owBQC5HDedmCjRX4IPcXODs_Kc5RyfYeHk_g";
 
-const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-async function contadorVisitas(){
-await client.from("page_visits").insert([{route:"business-card"}]);
-const {count}=await client
-.from("page_visits")
-.select("*",{count:"exact",head:true})
-.eq("route","business-card");
+async function contadorVisitas() {
+  await client.rpc("incrementar_contador", {
+    nome_oraculo: "oraculo_12_pombagiras"
+  });
 
-document.getElementById("contador").innerText=count ?? "--";
-document.getElementById("contadorBack").innerText=count ?? "--";
+  const { data } = await client
+    .from("oraculo_pombagira")
+    .select("total_consultas")
+    .eq("nome", "oraculo_12_pombagiras")
+    .single();
+
+  if (data) {
+    document.getElementById("contador").innerText = data.total_consultas;
+    document.getElementById("contadorBack").innerText = data.total_consultas;
+  }
 }
 
 function flipCard(){
-document.getElementById("flipCard").classList.toggle("flipped");
+  document.getElementById("flipCard").classList.toggle("flipped");
 }
 
-window.addEventListener("load",contadorVisitas);
+window.addEventListener("load", contadorVisitas);
 </script>
 
 </body>
